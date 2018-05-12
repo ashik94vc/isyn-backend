@@ -16,7 +16,7 @@ const VISION_API_URL = "https://vision.googleapis.com/v1/images:annotate?key="+A
 
 const client = new ImageAnnotatorClient()
 
-const httpPort = 8080;
+const httpPort = process.env.PORT || 8080;
 let app = express();
 
 app.use(bodyParser.json());
@@ -46,5 +46,5 @@ app.use((req,res)=>{
 })
 
 app.listen(httpPort, function(){
-    console.log("Server listening on port 80")
+    console.log("Server listening on port "+httpPort)
 });
