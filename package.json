@@ -1,0 +1,24 @@
+{
+  "name": "mobile_realtime_captioning",
+  "version": "1.0.0",
+  "description": "Realtime captioning of Mobile.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ashik Vetrivelu <vcashik@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@google-cloud/vision": "^0.19.0",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "multer": "^1.3.0",
+    "nconf": "^0.10.0",
+    "request": "^2.85.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0"
+  }
+}

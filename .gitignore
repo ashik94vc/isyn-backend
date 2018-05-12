@@ -1,0 +1,5 @@
+config.json
+deeplearning-theano.json
+.babelrc
+*-lock.*
+node_modules/
