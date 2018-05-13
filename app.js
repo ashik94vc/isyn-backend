@@ -8,12 +8,13 @@ import {ImageAnnotatorClient} from'@google-cloud/vision'
 import VisionData from './model' 
 import config from './config'
 
+let storage = Multer.memoryStorage()
+let upload = Multer({storage: storage})
 
 
-const API_KEY = config.get('CLOUD_VISION_API_KEY')
+const API_KEY = config.get('GOOGLE_APPLICATION_CREDENTIALS')
 
-const VISION_API_URL = "https://vision.googleapis.com/v1/images:annotate?key="+API_KEY
-
+console.log(API_KEY)
 const client = new ImageAnnotatorClient()
 
 const httpPort = process.env.PORT || 8080;
@@ -25,8 +26,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 }))
 
-app.post('/image', (req,res)=>{
-    let image_data = Buffer.from(req.body.image, 'base64')
+app.post('/image', upload.single('image'), (req,res)=>{
+    let image_data = req.file.buffer
     let visionData = new VisionData(image_data)
     client
         .labelDetection(image_data)
@@ -46,5 +47,5 @@ app.use((req,res)=>{
 })
 
 app.listen(httpPort, function(){
-    console.log("Server listening on port "+httpPort)
+    console.log("Server listening on port "+ httpPort)
 });
